@@ -49,7 +49,7 @@ export class UsersService {
         try {
             const user = await this.usersRepository.getUser({ id: userId });
             if (user.role === USER_ROLE.USER && !user.permissions.includes(requiredPermission)) {
-                throw new Error(`You dont have ${requiredPermission.toUpperCase()} permission`);
+                throw new Error(`You don't have ${requiredPermission.toUpperCase()} permission`);
             }
         } catch (error: any) {
             throw new Error(error);

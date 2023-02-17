@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import { APP_PORT } from './shared/constants/global.constants';
 import { setGlobalRouter } from './routes';
 
@@ -8,12 +8,11 @@ import { useDbConnection } from './database';
 
 import bodyParser from 'body-parser';
 
-function main() {
+async function main(): Promise<Express> {
     const app = express();
-
+    
     app.use(cors());
     app.use(bodyParser.json());
-
     app.use('/', setGlobalRouter());
     app.use(useGlobalErrorHandler);
 
@@ -21,6 +20,7 @@ function main() {
         await useDbConnection();
         console.debug(`[MAIN] Service running on port: ${APP_PORT}`);
     });
+    return app;
 }
 
-main();
+export const app = main();
