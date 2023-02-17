@@ -19,7 +19,6 @@ export class ReviewsService {
             const review = await this.reviewsRepository.createReview({ PostId: postId, stars, comment });
             return review;
         } catch (error: any) {
-            console.log(error)
             throw new Error(error?.message);
         }
     }
