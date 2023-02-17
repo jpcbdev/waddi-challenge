@@ -6,7 +6,8 @@ export class PostsRepository {
 
     public async getPosts(): Promise<IPost[]> {
         return PostsModel.findAll({
-            include: ReviewsModel
+            include: ReviewsModel,
+            order: [['id', 'DESC']]
         });
     }
 

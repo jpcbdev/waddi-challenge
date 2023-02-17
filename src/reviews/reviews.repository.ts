@@ -4,7 +4,7 @@ import { ReviewsModel } from './reviews.model';
 export class ReviewsRepository {
 
     public async getReviews(conditions = {}): Promise<IReview[]> {
-        return ReviewsModel.findAll({ where: conditions });
+        return ReviewsModel.findAll({ where: conditions, order: [['id', 'DESC']] });
     }
 
     public async getReview(conditions = {}): Promise<IReview[]> {

@@ -6,7 +6,7 @@ import { USER_ROLE } from './enums';
 export class UsersRepository {
 
     public async getUsers(): Promise<IUser[]> {
-        return UsersModel.findAll({ where: { role: USER_ROLE.USER } });
+        return UsersModel.findAll({ where: { role: USER_ROLE.USER }, order: [['id', 'DESC']] });
     }
 
     public async getUser(conditions = {}): Promise<IUser> {
